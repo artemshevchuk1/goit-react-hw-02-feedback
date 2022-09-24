@@ -5,14 +5,7 @@ import {
   StatisticsItem,
   StatisticsList,
 } from './Statistics.styled';
-export const Statistics = ({
-  good,
-  neutral,
-  bad,
-  total,
-  goodPercent,
-  neutralPercent,
-}) => {
+export const Statistics = ({ good, neutral, bad, total, goodPercent }) => {
   return (
     <StatisticsThumb>
       <StatisticsItem>

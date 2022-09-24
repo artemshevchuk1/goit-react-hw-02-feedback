@@ -5,6 +5,5 @@ export const FeedbackButton = styled.div`
   justify-content: center;
 `;
 export const Button = styled.button`
-    margin-right: 15px;;
- 
-`
+  margin-right: 15px; ;
+`;

@@ -15,10 +15,7 @@ export class App extends Component {
     return good + neutral + bad;
   }
   countPositiveFeedbackPercentage() {
-    const { good, neutral, bad } = this.state;
-    const total = good + neutral + bad;
-
-    return Math.round((good / total) * 100);
+    return ((100 / this.countTotalFeedback()) * this.state.good).toFixed(0);
   }
   IncrementStatistics = propertyName => {
     this.setState(prevState => {
@@ -32,7 +29,6 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const goodPercent = this.countPositiveFeedbackPercentage();
-    const neutralPercent = this.countPositiveFeedbackPercentage();
     return (
       <Container>
         <Section title="Please leave feedback">
@@ -49,7 +45,6 @@ export class App extends Component {
               bad={bad}
               total={total}
               goodPercent={goodPercent}
-              neutralPercent={neutralPercent}
             />
           )}
         </Section>
