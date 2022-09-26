@@ -4,20 +4,24 @@ import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Section } from 'components/Section/Section';
 import { Statistics } from 'components/Statistics/Statistics';
 import { Notification } from 'components/Notification/Notification';
+
 export class App extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
+
   countTotalFeedback() {
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   }
+
   countPositiveFeedbackPercentage() {
     return ((100 / this.countTotalFeedback()) * this.state.good).toFixed(0);
   }
-  IncrementStatistics = propertyName => {
+
+  incrementStatistics = propertyName => {
     this.setState(prevState => {
       const value = prevState[propertyName];
       return {
@@ -25,14 +29,14 @@ export class App extends Component {
       };
     });
   };
+
   render() {
     const { good, neutral, bad } = this.state;
-    const total = this.countTotalFeedback();
-    const goodPercent = this.countPositiveFeedbackPercentage();
+
     return (
       <Container>
         <Section title="Please leave feedback">
-          <FeedbackOptions IncrementStatistics={this.IncrementStatistics} />
+          <FeedbackOptions incrementStatistics={this.incrementStatistics} />
         </Section>
         <Section title="Statistics">
           {' '}
@@ -43,8 +47,8 @@ export class App extends Component {
               good={good}
               neutral={neutral}
               bad={bad}
-              total={total}
-              goodPercent={goodPercent}
+              total={this.countTotalFeedback()}
+              goodPercent={this.countPositiveFeedbackPercentage()}
             />
           )}
         </Section>
